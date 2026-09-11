@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#071019" />
+  <title>Core — First Contact</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="importmap">
+  {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"}}
+  </script>
+</head>
+<body>
+  <div id="title" class="screen title-screen">
+    <div class="title-card">
+      <div class="eyebrow">MC9S08QG8 / instruction-level laboratory</div>
+      <h1>CORE</h1>
+      <p>You are inside a running machine. Observe its state. Trace its intent. Intervene.</p>
+      <div class="trial-grid">
+        <button data-start="0"><b>01</b><span>Conduction</span><small>Make stored state become a physical output.</small></button>
+        <button data-start="1"><b>02</b><span>Intent</span><small>Change the decision the firmware keeps enforcing.</small></button>
+        <button data-start="2"><b>03</b><span>Override</span><small>Hold contradictory state against a live control loop.</small></button>
+      </div>
+      <p class="fine">Core 0.2 · Browser prototype · Three.js renderer · real HCS08 firmware subset</p>
+    </div>
+  </div>
+
+  <div id="game" class="screen game-screen hidden">
+    <header>
+      <button id="menu" class="ghost">CORE</button>
+      <div><div class="eyebrow" id="trialTag">TRIAL 01</div><h2 id="trialName">Conduction</h2></div>
+      <div class="hardware"><strong>MC9S08QG8</strong><small id="runState">RUNNING</small></div>
+    </header>
+
+    <main>
+      <section class="world-wrap">
+        <canvas id="world"></canvas>
+        <div class="world-overlay top"><span>MCU INTERIOR</span><span id="targetReadout">TARGET $0002.0</span></div>
+        <div class="world-overlay bottom"><span>DRAG: ORBIT · PINCH/WHEEL: ZOOM · TAP CELL: TARGET</span></div>
+        <div id="complete" class="complete hidden"><b>END-STOP CONFIRMED</b><span>The external system is obeying the machine.</span></div>
+      </section>
+
+      <aside>
+        <div class="objective"><div class="eyebrow">Objective</div><p id="brief"></p></div>
+        <label>Memory bank<select id="bank"></select></label>
+        <div class="bytehead"><strong id="bankName"></strong><code id="byteValue"></code></div>
+        <div id="bits" class="bits"></div>
+        <div id="access" class="access"></div>
+        <div class="charge-row">
+          <button id="minus" class="minus">− PULSE</button><button id="plus" class="plus">+ PULSE</button>
+        </div>
+        <div class="charge-row small">
+          <button id="holdMinus" class="minus">LATCH −</button><button id="holdPlus" class="plus">LATCH +</button>
+        </div>
+        <div class="telemetry">
+          <div><span>PTB0</span><b id="pin">HI-Z</b></div>
+          <div><span>SHUTTER</span><b id="travel">0%</b></div>
+          <div><span>PTB1</span><b id="sensor">LOW</b></div>
+          <div><span>SAMPLE</span><b id="sample">NO</b></div>
+        </div>
+        <div class="meter"><i id="meter"></i></div>
+        <div class="cpu"><div class="eyebrow">Execution</div><code id="cpu"></code><pre id="trail"></pre></div>
+        <div class="sim-row"><button id="pause">Pause</button><button id="step">Step</button><select id="speed"><option value="0.25">0.25×</option><option value="1" selected>1×</option><option value="4">4×</option></select><button id="restart">Restart</button></div>
+        <button id="hintBtn" class="ghost">Reveal hint</button><p id="hint" class="hint hidden"></p>
+      </aside>
+    </main>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

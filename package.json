@@ -1,0 +1,11 @@
+{
+  "name": "core-game",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 tools/build_site.py",
+    "test": "npm run build && node tests/web02_tests.mjs",
+    "serve": "npm run build && python3 -m http.server 8000 -d dist"
+  }
+}
